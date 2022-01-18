@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ARTICLES_DATA } from './data/articles.data';
+import { IArticle } from './interfaces/IArticle.interface';
 import { Article } from './models/article.model';
 import { INewArticle } from './types/TNewArticle.type';
 
@@ -8,6 +10,8 @@ import { INewArticle } from './types/TNewArticle.type';
   styleUrls: ['./articles.component.scss'],
 })
 export class ArticlesComponent implements OnInit {
+  articles: IArticle[] = ARTICLES_DATA;
+
   constructor() {}
 
   ngOnInit(): void {}
