@@ -18,6 +18,10 @@ export class ArticlesComponent implements OnInit {
 
   add({ title, link }: INewArticle) {
     const newArticle = new Article(title, link, 0);
-    console.log(`added new article => ${newArticle}`);
+    this.articles.push(newArticle);
+  }
+
+  sortedArticles(): Article[] {
+    return this.articles.sort((a: Article, b: Article) => b.votes - a.votes);
   }
 }
