@@ -1,0 +1,19 @@
+<div class="new-article-form">
+  <h3>Add a link</h3>
+  <!--Add article title -->
+  <div class="form-group">
+    <label class="label">Title</label>
+    <input class="form-control" #titleInput />
+  </div>
+  <!--Add link input -->
+  <div class="form-group">
+    <label class="label">Link</label>
+    <input class="form-control" #linkInput />
+  </div>
+  <button
+    class="btn btn-success submit-btn"
+    (click)="addArticle(titleInput, linkInput)"
+  >
+    Submit Article
+  </button>
+</div>
