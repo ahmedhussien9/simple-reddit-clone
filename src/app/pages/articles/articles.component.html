@@ -1,3 +1,6 @@
 <div class="container">
   <app-create-article (isNewArticleData)="add($event)"></app-create-article>
+
+  <h1>Articles</h1>
+  <app-list-article [articles]="articles"></app-list-article>
 </div>

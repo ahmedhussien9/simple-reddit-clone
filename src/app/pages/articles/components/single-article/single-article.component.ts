@@ -1,15 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Article } from '../../models/article.model';
 
 @Component({
   selector: 'app-single-article',
   templateUrl: './single-article.component.html',
-  styleUrls: ['./single-article.component.scss']
+  styleUrls: ['./single-article.component.scss'],
 })
 export class SingleArticleComponent implements OnInit {
+  @Input() article: Article;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  upVote() {
+    this.article.upVote();
+    return false;
   }
 
+  downVote() {
+    this.article.downVote();
+    return false;
+  }
 }
