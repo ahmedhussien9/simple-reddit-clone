@@ -14,6 +14,7 @@ import { INewArticle } from './types/TNewArticle.type';
 export class ArticlesComponent implements OnInit {
   articles: IArticle[] = [];
   private $destroy = new Subject();
+
   constructor(private _articleService: ArticleService) {}
 
   ngOnInit(): void {
