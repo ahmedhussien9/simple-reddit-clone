@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Article } from '../../models/article.model';
+import { ArticleModel } from '../../models/article.model';
 
 @Component({
   selector: 'app-list-article',
@@ -7,7 +7,7 @@ import { Article } from '../../models/article.model';
   styleUrls: ['./list-article.component.scss'],
 })
 export class ListArticleComponent implements OnInit {
-  @Input() articles: Article[];
+  @Input() articles: ArticleModel[];
   constructor() {}
 
   ngOnInit(): void {}

@@ -1,6 +1,6 @@
 import { IArticle } from '../interfaces/IArticle.interface';
 
-export class Article implements IArticle {
+export class ArticleModel implements IArticle {
   domainName: string;
   constructor(public title: string, public link: string, public votes: number) {
     this.title = title;

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
-import { IArticle } from './interfaces/IArticle.interface';
-import { Article } from './models/article.model';
+import { ArticleModel } from './models/article.model';
 import { ArticleService } from './services/article.service';
 import { INewArticle } from './types/TNewArticle.type';
 
@@ -12,7 +11,7 @@ import { INewArticle } from './types/TNewArticle.type';
   styleUrls: ['./articles.component.scss'],
 })
 export class ArticlesComponent implements OnInit {
-  articles: IArticle[] = [];
+  articles: ArticleModel[] = [];
   private $destroy = new Subject();
 
   constructor(private _articleService: ArticleService) {}
@@ -22,7 +21,7 @@ export class ArticlesComponent implements OnInit {
       .getArticlesApi()
       .pipe(
         takeUntil(this.$destroy),
-        tap((articles: Article[]) => {
+        tap((articles: ArticleModel[]) => {
           this.articles = articles;
         })
       )
@@ -37,11 +36,13 @@ export class ArticlesComponent implements OnInit {
   }
 
   addNewArticle({ title, link }: INewArticle) {
-    const newArticle = new Article(title, link, 0);
+    const newArticle = new ArticleModel(title, link, 0);
     this.articles.push(newArticle);
   }
 
-  sortedArticles(): Article[] {
-    return this.articles.sort((a: Article, b: Article) => b.votes - a.votes);
+  sortedArticles(): ArticleModel[] {
+    return this.articles.sort(
+      (a: ArticleModel, b: ArticleModel) => b.votes - a.votes
+    );
   }
 }
