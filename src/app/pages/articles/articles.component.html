@@ -1,6 +1,12 @@
 <div class="container">
-  <app-create-article (isNewArticleData)="add($event)"></app-create-article>
+  <section class="create-article">
+    <app-create-article
+      (isNewArticleData)="addNewArticle($event)"
+    ></app-create-article>
+  </section>
 
-  <h1>Articles</h1>
-  <app-list-article [articles]="sortedArticles()"></app-list-article>
+  <section class="articles-list">
+    <h1>Articles</h1>
+    <app-list-article [articles]="sortedArticles()"></app-list-article>
+  </section>
 </div>
