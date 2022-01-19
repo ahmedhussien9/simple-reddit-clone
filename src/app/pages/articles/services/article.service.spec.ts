@@ -69,16 +69,22 @@ describe('ArticleService', () => {
         articles = articlesData;
         expect(articles.length).toBe(3);
         expect(articles[0]).toEqual(articleMock);
-        expect(articles[0].title).toBe(articleMock.title);
-        expect(articles[0].domain).toBe(articleMock.domain);
+
+        // article 1
+        expect(articles[0].title).toBe('Angular');
+        expect(articles[0].domainName).toBe('angular.io');
         expect(articles[0].link).toBe('http://angular.io');
+
+        // article 2
+        expect(articles[1].title).toBe('Fullstack');
+        expect(articles[1].domainName).toBe('fullstack.io');
+        expect(articles[1].link).toBe('http://fullstack.io');
       });
       const request = httpTestingController.expectOne(
         '/assets/data/articles.data.json'
       );
       expect(request.request.method).toBe('GET');
       expect(request.request.url).toEqual('/assets/data/articles.data.json');
-      console.log(request.request.url);
       request.flush(mockData);
     })
   ));
