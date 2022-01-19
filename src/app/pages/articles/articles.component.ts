@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ARTICLES_DATA } from './data/articles.data';
+import { Subject } from 'rxjs';
+import { takeUntil, tap } from 'rxjs/operators';
 import { IArticle } from './interfaces/IArticle.interface';
 import { Article } from './models/article.model';
+import { ArticleService } from './services/article.service';
 import { INewArticle } from './types/TNewArticle.type';
 
 @Component({
@@ -10,14 +12,35 @@ import { INewArticle } from './types/TNewArticle.type';
   styleUrls: ['./articles.component.scss'],
 })
 export class ArticlesComponent implements OnInit {
-  articles: IArticle[] = ARTICLES_DATA;
+  articles: IArticle[] = [];
+  private $destroy = new Subject();
+  constructor(private _articleService: ArticleService) {}
 
-  constructor() {}
+  ngOnInit(): void {
+    this._articleService
+      .getArticlesApi()
+      .pipe(
+        takeUntil(this.$destroy),
+        tap((articles: Article[]) => {
+          this.articles = articles;
+        })
+      )
+      .subscribe();
+  }
 
-  ngOnInit(): void {}
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.$destroy.next();
+    this.$destroy.complete();
+  }
 
-  add({ title, link }: INewArticle) {
+  addNewArticle({ title, link }: INewArticle) {
     const newArticle = new Article(title, link, 0);
-    console.log(`added new article => ${newArticle}`);
+    this.articles.push(newArticle);
+  }
+
+  sortedArticles(): Article[] {
+    return this.articles.sort((a: Article, b: Article) => b.votes - a.votes);
   }
 }

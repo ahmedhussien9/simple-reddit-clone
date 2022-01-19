@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "Angular",
+    "link": "http://angular.io",
+    "votes": 3
+  },
+  {
+    "id": 1,
+    "title": "Fullstack",
+    "link": "http://fullstack.io",
+    "votes": 2
+  },
+  {
+    "id": 1,
+    "title": "Github",
+    "link": "http://github.com",
+    "votes": 3
+  }
+]

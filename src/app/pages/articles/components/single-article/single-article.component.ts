@@ -15,11 +15,9 @@ export class SingleArticleComponent implements OnInit {
 
   upVote() {
     this.article.upVote();
-    return false;
   }
 
   downVote() {
     this.article.downVote();
-    return false;
   }
 }
