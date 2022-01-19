@@ -7,7 +7,8 @@ import { INewArticle } from '../../types/TNewArticle.type';
   styleUrls: ['./create-article.component.scss'],
 })
 export class CreateArticleComponent implements OnInit {
-  @Output() isNewArticleData = new EventEmitter<INewArticle>();
+  @Output() isNewArticleData: EventEmitter<INewArticle> =
+    new EventEmitter<INewArticle>();
 
   constructor() {}
 

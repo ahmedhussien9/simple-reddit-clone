@@ -28,13 +28,6 @@ export class ArticlesComponent implements OnInit {
       .subscribe();
   }
 
-  ngOnDestroy(): void {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
-    this.$destroy.next();
-    this.$destroy.complete();
-  }
-
   addNewArticle({ title, link }: INewArticle) {
     const newArticle = new ArticleModel(title, link, 0);
     this.articles.push(newArticle);
@@ -44,5 +37,12 @@ export class ArticlesComponent implements OnInit {
     return this.articles.sort(
       (a: ArticleModel, b: ArticleModel) => b.votes - a.votes
     );
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.$destroy.next();
+    this.$destroy.complete();
   }
 }
